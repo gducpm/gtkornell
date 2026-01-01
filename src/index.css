@@ -1,0 +1,18 @@
+/* Convenience class for adding vertical space */
+.small-vertical-space {
+	display: block;
+	margin-bottom: 3px;
+}
+.main-menu-action-card {
+	margin: 5px;
+}
+
+/* Disable text selection everywhere */
+body, body * {
+  user-select: none;
+}
+
+/* Re-enable for inputs, textareas, and contenteditable */
+input, textarea, [contenteditable="true"] {
+  user-select: text;
+}

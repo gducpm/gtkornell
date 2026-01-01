@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<script type="module" src="/src/renderer.ts"></script>
+	<title>GTech Kornell</title>
+</head>
+<body>
+	<nav class="navbar navbar-dark navbar-expand-sm bg-danger">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">GTKornell</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							File
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Create new Notebook</a></li>
+							<li><a class="dropdown-item" href="#">Open existing Notebook</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">Create new Kornell</a></li>
+							<li><a class="dropdown-item" href="#">Open existing Kornell</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Edit
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
+							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">Preferences</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							View
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
+							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item zoom-in" href="#">Zoom in (Ctrl++)</a></li>
+							<li><a class="dropdown-item zoom-out" href="#">Zoom out (Ctrl+-)</a></li>
+							<li><a class="dropdown-item reset-zoom" href="#">Reset zoom</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">Preferences</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							About
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item about-btn">About</a></li>
+							<li><a class="dropdown-item legal-info-btn">Legal information</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item donate-btn">Donate (not today)</a></li>
+						</ul>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Help
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item how-to-cornell-btn">How does Cornell-style learning work?</a></li>
+							<li><a class="dropdown-item how-to-markdown-btn">How does Markdown work?</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>GTech Kornell</h1>
+		<h3>A fully libre-free Cornell-style note-taking application</h3>
+		<div class="card main-menu-action-card">
+			<div class="card-body">
+				<a role="button" href="editor.html" class="btn btn-danger">Create new Notebook</a>
+				<a role="button" href="editor.html" class="btn btn-danger">Open existing Notebook</a>
+				<p>A notebook is a series of Kornells and raw text pages, forming a complete series of written knowledge about a particular subject. You can use it for your learning in general.</p>
+				<p>A notebook is simply a directory full of .md and .kornell files, so you can easily read and change data in each file. It is, though, more convenient inside GTKornell.</p>
+			</div>
+		</div>
+		<div class="card main-menu-action-card">
+			<div class="card-body">
+				<a role="button" href="editor.html" class="btn btn-danger">Create new Kornell</a>
+				<a role="button" href="editor.html" class="btn btn-danger">Open existing Kornell</a>
+				<p>A single Kornell is a Cornell-organized note file that you can open in GTKornell.</p>
+			</div>
+		</div>
+		<div class="card main-menu-action-card">
+			<div class="card-body">
+				<a role="button" href="#" class="btn btn-danger how-to-cornell-btn" href="#">How does Cornell-style learning work?</a>
+				<a role="button" href="#" class="btn btn-danger how-to-markdown-btn">How does Markdown work?</a>
+				<br>
+				<span class="small-vertical-space"></span>
+				<a role="button" href="#" class="btn btn-danger prefs-btn">Preferences</a>
+				<a role="button" href="#" class="btn btn-danger about-btn">About</a>
+				<a role="button" href="#" class="btn btn-danger legal-info-btn">Legal Information</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

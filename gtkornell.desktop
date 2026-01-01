@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=GTKornell
+Comment=Cornell-style notes editor
+Exec=gtkornell %U
+Icon=gtkornell
+Terminal=false
+Categories=Utility;Education;
+StartupNotify=true

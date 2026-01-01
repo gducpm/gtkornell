@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+
+HERE="$(dirname "$(readlink -f "$0")")"
+
+export APPDIR="$HERE"
+export PATH="$HERE/usr/bin:$PATH"
+
+exec "$HERE/usr/bin/gtkornell" "$@"

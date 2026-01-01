@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install NSIS if windows-latest
+        if: runner.os == 'Windows'
+        run: |
+          choco install nsis -y
+
+      - name: Build the app
+        run: npm run make
+
+      - name: Build AppImage if ubuntu-latest
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update && sudo apt-get install -y fuse libfuse2
+          chmod +x appimage_scripts/appimage_gnu_linux_build.sh
+          ./appimage_scripts/appimage_gnu_linux_build.sh
