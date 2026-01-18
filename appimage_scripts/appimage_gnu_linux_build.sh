@@ -8,7 +8,7 @@ cd out/appimage-x64/GTKornell.AppDir
 mkdir -p usr/bin
 cp "$ROOT/assets/icon.png" ./gtkornell.png
 cp "$ROOT/gtkornell.desktop" .
-cp "$ROOT/out/gtkornell-linux-x64/gtkornell" usr/bin
+cp -a "$ROOT/out/gtkornell-linux-x64/"* usr/bin
 cp "$ROOT/appimage_scripts/AppRun" .
 chmod +x AppRun
 

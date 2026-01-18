@@ -14,8 +14,7 @@ ipcMain.on('new-window', (_event, filename: string) => {
 	const newWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		autoHideMenuBar: true,
-		icon: path.join(__dirname, 'assets/icon.png'),
+		icon: path.join(__dirname, '../assets/icon.png'),
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 		},
@@ -25,7 +24,9 @@ ipcMain.on('new-window', (_event, filename: string) => {
 	if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
 		newWindow.loadURL(`${MAIN_WINDOW_VITE_DEV_SERVER_URL}/${filename}`);
 	} else {
-		newWindow.loadFile(path.join(__dirname, `../renderer/${filename}`));
+		newWindow.loadFile(
+			path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/${filename}`)
+		);
 	}
 
 	newWindow.setMenu(null);
@@ -38,8 +39,7 @@ const createWindow = () => {
 	const mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
-		autoHideMenuBar: true,
-		icon: path.join(__dirname, 'assets/icon.png'),
+		icon: path.join(__dirname, '../assets/icon.png'),
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 		},
@@ -57,10 +57,9 @@ const createWindow = () => {
 
 	mainWindow.setMenu(null);
 	mainWindow.maximize();
-	mainWindow.show();
 
 	// Open the DevTools.
-	//mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 
 };
 
