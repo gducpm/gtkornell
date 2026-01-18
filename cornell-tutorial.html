@@ -2,13 +2,23 @@
 <html lang="en" data-bs-theme="auto">
 <head>
 	<meta charset="UTF-8">
+	<!--Viewport adjustments-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--Content Security Policy-->
+	<meta http-equiv="Content-Security-Policy" content="
+		default-src 'self';script-src 'self';style-src 'self';
+		img-src 'self' data:;font-src 'self';connect-src 'self';">
+	<!--Stylesheets here avoid FOUC-->
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="src/index.css">
+	<link rel="icon" href="assets/icon.png">
+	<!--Any other script is loaded via the renderer script-->
 	<script type="module" src="/src/renderer.ts"></script>
-	<title>GTech Kornell - Cornell Notes Explanation</title>
+	<title>GTech Kornell</title>
 </head>
 <body>
-	<nav class="navbar navbar-dark navbar-expand-sm bg-danger">
+	<nav class="navbar navbar-dark navbar-expand-sm bg-danger sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">GTKornell</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,60 +28,119 @@
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-file-earmark-text-fill"></i>
 							File
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Create new Notebook</a></li>
-							<li><a class="dropdown-item" href="#">Open existing Notebook</a></li>
+							<li><a class="dropdown-item" href="index.html">
+								<i class="bi bi-house-fill"></i>
+								Back to Main Menu
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Create new Kornell</a></li>
-							<li><a class="dropdown-item" href="#">Open existing Kornell</a></li>
+							<li><a class="dropdown-item savebtn" href="#">
+								<i class="bi bi-floppy-fill"></i>
+								Save
+							</a></li>
+							<li><a class="dropdown-item savebtn" href="#">
+								<i class="bi bi-floppy-fill"></i>
+								Save As...
+							</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-journal-plus"></i>
+								Create new Notebook (maybe later)
+							</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-upload"></i>
+								Open existing Notebook (maybe later)
+							</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">
+								<i class="bi bi-file-earmark-plus-fill"></i>
+								Create new Kornell
+							</a></li>
+							<li><a class="dropdown-item openbtn" href="#">
+								<i class="bi bi-upload"></i>
+								Open existing Kornell
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-pencil-square"></i>
 							Edit
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
-							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-search"></i>
+								Find (maybe later)
+							</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-repeat"></i>
+								Replace (maybe later)
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Preferences</a></li>
+							<li><a class="dropdown-item" href="#">
+								<i class="bi bi-gear-fill"></i>
+								Preferences
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-binoculars-fill"></i>
 							View
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
-							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item zoom-in" href="#">Zoom in (Ctrl++)</a></li>
-							<li><a class="dropdown-item zoom-out" href="#">Zoom out (Ctrl+-)</a></li>
-							<li><a class="dropdown-item reset-zoom" href="#">Reset zoom</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Preferences</a></li>
+							<li><a class="dropdown-item zoom-in" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Zoom in (Ctrl++)
+							</a></li>
+							<li><a class="dropdown-item zoom-out" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Zoom out (Ctrl+-)
+							</a></li>
+							<li><a class="dropdown-item reset-zoom" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Reset zoom
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-info-circle-fill"></i>
 							About
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item about-btn">About</a></li>
-							<li><a class="dropdown-item legal-info-btn">Legal information</a></li>
+							<li><a class="dropdown-item about-btn">
+								<i class="bi bi-info-circle-fill"></i>
+								About
+							</a></li>
+							<li><a class="dropdown-item legal-info-btn">
+								<i class="bi bi-shield-fill-check"></i>
+								Legal information
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item donate-btn">Donate (not today)</a></li>
+							<li><a class="dropdown-item donate-btn">
+								<i class="bi bi-cup-hot-fill"></i>
+								Donate (maybe later)
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-question-circle-fill"></i>
 							Help
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item how-to-cornell-btn">How does Cornell-style learning work?</a></li>
-							<li><a class="dropdown-item how-to-markdown-btn">How does Markdown work?</a></li>
+							<li><a class="dropdown-item how-to-cornell-btn">
+								<i class="bi bi-question-circle-fill"></i>
+								How does Cornell-style learning work?
+							</a></li>
+							<li><a class="dropdown-item how-to-markdown-btn">
+								<i class="bi bi-question-circle-fill"></i>
+								How does Markdown work?
+							</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -79,17 +148,93 @@
 		</div>
 	</nav>
 	<div class="container">
-		<div class="text-center">
+		<div class="text-center m-5">
 			<h1>How does Cornell-style learning work?</h1>
-			<p><i> - GDucpm - </i></p>
-			<p>What I call Cornell-style learning is actually Cornell notes. It's unreasonable that people call it that way, because that means it's only a note organizing convention. The Cornell learning system includes both an organization specification and a 6-step learning process. Let's dive in.</p>
-			<p>Cornell Notes separates your paper into four partitions. The first partition is a small, horizontal-oriented box &ndash; the title. It spans the whole width of your paper, but barely occupies any of the height. The second partition, height-oriented, takes up 1/3 of your paper's width, but vertically leaves some space at the end for a summary. This is the Cues partition, and it sits right below the title and at the very left of your paper. The third partition has the same height, and it fills up the remaining width. It also sits right below the title &ndash; the Notes partition. You allocate all the remaining space as the Summary partition.</p>
-			<h2>Step 1: Record your notes at school</h2>
-			<p>At school, note everything you've got into the Notes partition. Try to keep it simple; the limitation of Cornell-style noting is that the partitioning makes it very limited in space. Abbreviate words (only if you can understand it), and if necessary, don't include examples. However, with GTKornell, you can note as long as you want.</p>
-			<h2>Step 2: Record keywords or concepts</h2>
-			<p>That's literally it. Record them into the Cues partition. Additionally, write possible questions that you wonder or might help you upon revision. You will need them.</p>
-			<h2>Step 3: </h2>
+			<i>&mdash; ChatGPT x GDucpm &mdash;</i>
 		</div>
+		<p>What I call <strong>Cornell-style learning</strong> is actually based on <strong>Cornell Notes</strong>. Calling it just a “note-taking method” is underselling it. Cornell is not only about how notes are organized on paper, but also about <strong>how you interact with those notes over time</strong>.</p>
+		<p>The Cornell learning system consists of two major parts:</p>
+		<ul>
+			<li>A structured <strong>note organization format</strong></li>
+			<li>A <strong>six-step learning and revision process</strong></li>
+		</ul>
+		<hr>
+		<h2>The Cornell Notes layout</h2>
+		<p>Cornell Notes divide your page into <strong>four distinct partitions</strong>:</p>
+		<ul>
+			<li><strong>Title</strong> &ndash; a short horizontal section at the very top. It spans the full width but only occupies a small amount of height.</li>
+			<li><strong>Cues</strong> &ndash; a vertical column on the left, typically about one-third of the page width. This is used for keywords, questions, and prompts.</li>
+			<li><strong>Notes</strong> &ndash; the main content area on the right, where detailed notes are written.</li>
+			<li><strong>Summary</strong> &ndash; a horizontal section at the bottom, used to summarize the entire page in your own words.</li>
+		</ul>
+		<p>Traditional paper imposes strict space limits. GTKornell removes those limits while keeping the structure intact.</p>
+		<hr>
+		<h2>Step 1: Record your notes</h2>
+		<p>During lectures, classes, or while studying, write everything important into the <strong>Notes</strong> section.</p>
+		<ul>
+			<li>Focus on main ideas</li>
+			<li>Use abbreviations when possible</li>
+			<li>Skip excessive examples if time is limited</li>
+		</ul>
+		<p>The goal is <strong>capturing information</strong>, not perfection. GTKornell allows unlimited length, so you can be more relaxed than on paper.</p>
+		<hr>
+		<h2>Step 2: Create cues and questions</h2>
+		<p>After recording your notes, extract <strong>keywords, concepts, and questions</strong> into the <strong>Cues</strong> section.</p>
+		<p>These cues should:</p>
+		<ul>
+			<li>Represent key ideas</li>
+			<li>Trigger memory</li>
+			<li>Form possible exam or review questions</li>
+		</ul>
+		<p>This step transforms passive notes into an <strong>active learning tool</strong>.</p>
+		<hr>
+		<h2>Step 3: Reflect on your notes</h2>
+		<p>Take a short break, then return to your notes and read them carefully. Try to understand the material without adding new information.</p>
+		<p>Ask yourself:</p>
+		<ul>
+			<li>Do I understand this concept?</li>
+			<li>Can I explain it in my own words?</li>
+			<li>Are there gaps in my understanding?</li>
+		</ul>
+		<hr>
+		<h2>Step 4: Recite from memory</h2>
+		<p>Cover the <strong>Notes</strong> section and use the <strong>Cues</strong> to verbally recall the information.</p>
+		<p>This step is critical. It forces your brain to:</p>
+		<ul>
+			<li>Retrieve information actively</li>
+			<li>Strengthen memory retention</li>
+			<li>Reveal weak spots</li>
+		</ul>
+		<p>If you struggle, uncover the notes and try again.</p>
+		<hr>
+		<h2>Step 5: Summarize</h2>
+		<p>Write a concise summary in the <strong>Summary</strong> section. This should be a high-level overview of the entire page.</p>
+		<p>Avoid copying sentences. Instead, aim for:</p>
+		<ul>
+			<li>Key conclusions</li>
+			<li>Main themes</li>
+			<li>Connections between ideas</li>
+		</ul>
+		<hr>
+		<h2>Step 6: Review regularly</h2>
+		<p>Revisit your Cornell notes periodically:</p>
+		<ul>
+			<li>After one day</li>
+			<li>After one week</li>
+			<li>Before exams</li>
+		</ul>
+		<p>Use the cues to quiz yourself and the summary for quick refreshers.</p>
+		<hr>
+		<h2>Why Cornell-style learning works</h2>
+		<p>Cornell-style learning is effective because it combines:</p>
+		<ul>
+			<li>Structured organization</li>
+			<li>Active recall</li>
+			<li>Reflection</li>
+			<li>Spaced repetition</li>
+		</ul>
+		<p>GTKornell keeps this philosophy intact while removing the physical limitations of paper.</p>
+		<p class="text-center fw-bold mt-4">Learn actively. Review intelligently. Remember longer.</p>
 	</div>
 </body>
 </html>

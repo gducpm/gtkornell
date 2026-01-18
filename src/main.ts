@@ -1,11 +1,13 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, shell } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+import fs from 'fs/promises';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
 	app.quit();
 }
+
 
 // Handle spawning new windows
 ipcMain.on('new-window', (_event, filename: string) => {
@@ -13,8 +15,9 @@ ipcMain.on('new-window', (_event, filename: string) => {
 		width: 800,
 		height: 600,
 		autoHideMenuBar: true,
+		icon: path.join(__dirname, 'assets/icon.png'),
 		webPreferences: {
-			preload: path.join(__dirname, 'preload.js')
+			preload: path.join(__dirname, 'preload.js'),
 		},
 		show: false,
 	});
@@ -25,6 +28,7 @@ ipcMain.on('new-window', (_event, filename: string) => {
 		newWindow.loadFile(path.join(__dirname, `../renderer/${filename}`));
 	}
 
+	newWindow.setMenu(null);
 	newWindow.maximize();
 	newWindow.show();
 });
@@ -35,6 +39,7 @@ const createWindow = () => {
 		width: 800,
 		height: 600,
 		autoHideMenuBar: true,
+		icon: path.join(__dirname, 'assets/icon.png'),
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 		},
@@ -50,6 +55,7 @@ const createWindow = () => {
 		);
 	}
 
+	mainWindow.setMenu(null);
 	mainWindow.maximize();
 	mainWindow.show();
 
@@ -57,6 +63,56 @@ const createWindow = () => {
 	//mainWindow.webContents.openDevTools();
 
 };
+
+ipcMain.handle('open-file-dialog', async (_event): Promise<string | null> => {
+	const result = await dialog.showOpenDialog({
+		title: 'Select a file',
+		properties: ['openFile'],
+		filters: [{ name: 'Kornell Files', extensions: ['kornell', 'md'] }]
+	});
+
+	if (result.canceled) return null;
+	return result.filePaths[0];
+});
+
+ipcMain.handle('save-file-dialog', async (_event, defaultFileName: string = 'file.kornell'): Promise<string | null> => {
+	const { canceled, filePath } = await dialog.showSaveDialog({
+		title: 'Save your Kornell file',
+		defaultPath: defaultFileName,
+		filters: [{ name: 'Kornell Files', extensions: ['kornell', 'md'] }]
+	});
+
+	if (canceled) return null; // user pressed cancel
+	return filePath;           // path to save the file
+});
+
+ipcMain.handle('open-file', async (_event, filePath: string): Promise<string | null> => {
+	try {
+		if (filePath == null) return null;
+		const content = await fs.readFile(filePath, 'utf-8');
+		return content;
+	} catch (err) {
+		console.error("Error loading file", filePath, "- File failed to load because", err);
+		return null;
+	}
+});
+
+ipcMain.handle('save-file', async (_event, filePath: string, data: string): Promise<boolean> => {
+	try {
+		if (filePath == null || data == null) return false;
+		await fs.writeFile(filePath, data, 'utf-8');
+		return true;
+	} catch (err) {
+		console.error("Error saving file", filePath, "- File failed to save because", err);
+		return false;
+	}
+});
+
+ipcMain.handle('open-external-link', async (_event, url: string) => {
+	if (!url.startsWith('#')) {
+		await shell.openExternal(url);
+	}
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

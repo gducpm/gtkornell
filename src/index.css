@@ -1,7 +1,6 @@
 /* Convenience class for adding vertical space */
 .small-vertical-space {
-	display: block;
-	margin-bottom: 3px;
+	margin-bottom: 4px;
 }
 .main-menu-action-card {
 	margin: 5px;
@@ -13,6 +12,45 @@ body, body * {
 }
 
 /* Re-enable for inputs, textareas, and contenteditable */
-input, textarea, [contenteditable="true"] {
+input, textarea, [contenteditable="true"], .kornell-highlightable * {
   user-select: text;
+}
+
+.kornell {
+	display: block;
+	height: auto;
+}
+
+.kornell-source {
+	width: 100%;
+	min-height: 100%;
+	box-sizing: border-box;
+	border: none;
+	background-color: transparent;
+	resize: none;
+	overflow-x: hidden;
+	overflow-y: visible;
+}
+
+.kornell-title {
+	min-height: 5rem;
+}
+
+.kornell-source:focus {
+	outline: none;
+}
+
+.kornell-cues, .kornell-notes {
+	min-height: 100vh;
+}
+
+.kornell-summary {
+	min-height: 20vh;
+}
+
+.notes-hider {
+	width: 100%;
+	height: 100%;
+	z-index: 99999999999999999999999999999999999999999;
+	background: #dc3545;
 }

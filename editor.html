@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<!--Viewport adjustments-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--Content Security Policy-->
+	<meta http-equiv="Content-Security-Policy" content="
+		default-src 'self';script-src 'self';style-src 'self';
+		img-src 'self' data:;font-src 'self';connect-src 'self';">
+	<!--Stylesheets here avoid FOUC-->
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="src/index.css">
+	<link rel="icon" href="assets/icon.png">
+	<!--Any other script is loaded via the renderer script-->
 	<script type="module" src="/src/renderer.ts"></script>
 	<title>GTech Kornell</title>
 </head>
 <body>
-	<nav class="navbar navbar-dark navbar-expand-sm bg-danger">
+	<nav class="navbar navbar-dark navbar-expand-sm bg-danger sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">GTKornell</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,60 +28,119 @@
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-file-earmark-text-fill"></i>
 							File
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Create new Notebook</a></li>
-							<li><a class="dropdown-item" href="#">Open existing Notebook</a></li>
+							<li><a class="dropdown-item" href="index.html">
+								<i class="bi bi-house-fill"></i>
+								Back to Main Menu
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Create new Kornell</a></li>
-							<li><a class="dropdown-item" href="#">Open existing Kornell</a></li>
+							<li><a class="dropdown-item savebtn" href="#">
+								<i class="bi bi-floppy-fill"></i>
+								Save
+							</a></li>
+							<li><a class="dropdown-item savebtn" href="#">
+								<i class="bi bi-floppy-fill"></i>
+								Save As...
+							</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-journal-plus"></i>
+								Create new Notebook (maybe later)
+							</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-upload"></i>
+								Open existing Notebook (maybe later)
+							</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">
+								<i class="bi bi-file-earmark-plus-fill"></i>
+								Create new Kornell
+							</a></li>
+							<li><a class="dropdown-item openbtn" href="#">
+								<i class="bi bi-upload"></i>
+								Open existing Kornell
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-pencil-square"></i>
 							Edit
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
-							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-search"></i>
+								Find (maybe later)
+							</a></li>
+							<li><a class="dropdown-item disabled" href="#">
+								<i class="bi bi-repeat"></i>
+								Replace (maybe later)
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Preferences</a></li>
+							<li><a class="dropdown-item" href="#">
+								<i class="bi bi-gear-fill"></i>
+								Preferences
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-binoculars-fill"></i>
 							View
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item disabled" href="#">Find (maybe later)</a></li>
-							<li><a class="dropdown-item disabled" href="#">Replace (maybe later)</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item zoom-in" href="#">Zoom in (Ctrl++)</a></li>
-							<li><a class="dropdown-item zoom-out" href="#">Zoom out (Ctrl+-)</a></li>
-							<li><a class="dropdown-item reset-zoom" href="#">Reset zoom</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Preferences</a></li>
+							<li><a class="dropdown-item zoom-in" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Zoom in (Ctrl++)
+							</a></li>
+							<li><a class="dropdown-item zoom-out" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Zoom out (Ctrl+-)
+							</a></li>
+							<li><a class="dropdown-item reset-zoom" href="#">
+								<i class="bi bi-zoom-in"></i>
+								Reset zoom
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-info-circle-fill"></i>
 							About
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item about-btn">About</a></li>
-							<li><a class="dropdown-item legal-info-btn">Legal information</a></li>
+							<li><a class="dropdown-item about-btn">
+								<i class="bi bi-info-circle-fill"></i>
+								About
+							</a></li>
+							<li><a class="dropdown-item legal-info-btn">
+								<i class="bi bi-shield-fill-check"></i>
+								Legal information
+							</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item donate-btn">Donate (not today)</a></li>
+							<li><a class="dropdown-item donate-btn">
+								<i class="bi bi-cup-hot-fill"></i>
+								Donate (maybe later)
+							</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="bi bi-question-circle-fill"></i>
 							Help
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item how-to-cornell-btn">How does Cornell-style learning work?</a></li>
-							<li><a class="dropdown-item how-to-markdown-btn">How does Markdown work?</a></li>
+							<li><a class="dropdown-item how-to-cornell-btn">
+								<i class="bi bi-question-circle-fill"></i>
+								How does Cornell-style learning work?
+							</a></li>
+							<li><a class="dropdown-item how-to-markdown-btn">
+								<i class="bi bi-question-circle-fill"></i>
+								How does Markdown work?
+							</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -80,29 +149,69 @@
 	</nav>
 	<div class="offcanvas offcanvas-start" tabindex="-1" id="explorerOffCanvas" aria-labelledby="explorerOffCanvasLabel">
 		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="explorerOffCanvasLabel">Offcanvas</h5>
+			<h5 class="offcanvas-title" id="explorerOffCanvasLabel">This feature is just... not yet implemented</h5>
 			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
-			<div>
-				Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-			</div>
-			<div class="dropdown mt-3">
-				<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-					Dropdown button
-				</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Action</a></li>
-					<li><a class="dropdown-item" href="#">Another action</a></li>
-					<li><a class="dropdown-item" href="#">Something else here</a></li>
-				</ul>
-			</div>
+			Hello!
 		</div>
 	</div>
 	<div class="container-fluid p-3">
-		<button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#explorerOffCanvas" aria-controls="explorerOffCanvas">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+		<!--breadcrumb NOT for navigation-->
+		<ol class="breadcrumb kornell-path-breadcrumb">
+			<li class="breadcrumb-item">home</li>
+			<li class="breadcrumb-item">gducpm</li>
+			<li class="breadcrumb-item">projects</li>
+			<li class="breadcrumb-item">gtkornell</li>
+			<li class="breadcrumb-item">src</li>
+			<li class="breadcrumb-item active">main.ts</li>
+		</ol>
+		<p>Kornell Format version: <span class="kornell-format-version-txt">(not loaded)</span> <i class="bi bi-question-circle-fill" data-bs-toggle="tooltip" data-bs-title="Newer GTKornell versions support newer Kornell formats." data-bs-trigger="hover focus"></i></p>
+		<a class="btn btn-danger" role="button" data-bs-toggle="offcanvas" data-bs-target="#explorerOffCanvas">
+			<i class="bi bi-list"></i>
+		</a>
+		<a class="btn btn-danger hide-sources-btn">
+			<i class="bi bi-eye-fill"></i>
+			Hide sources
+		</a>
+		<a class="btn btn-danger hide-notes-btn">
+			<i class="bi bi-eye-fill"></i>
+			Hide notes
+		</a>
+		<a class="btn btn-danger savebtn">
+			<i class="bi bi-floppy-fill"></i>
+			Save
+		</a>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="kornell kornell-title bg-danger-subtle border border-danger" id="ktitle">
+				<textarea class="kornell-source" rows="3" placeholder="Title..." data-kornell-source="title"></textarea>
+				<div class="kornell-render kornell-highlightable" data-kornell-render="title"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="kornell kornell-cues col-sm-4 bg-danger-subtle border border-danger" id="kcues">
+				<textarea class="kornell-source" rows="3" placeholder="Cues..." data-kornell-source="cues"></textarea>
+				<div class="kornell-render" data-kornell-render="cues"></div>
+			</div>
+			<div class="kornell kornell-notes col-sm-8 bg-danger-subtle border border-danger" id="knotes">
+				<textarea class="kornell-source" rows="3" placeholder="Notes..." data-kornell-source="notes"></textarea>
+				<div class="kornell-render" data-kornell-render="notes"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="kornell kornell-summary bg-danger-subtle border border-danger" id="ksummary">
+				<textarea class="kornell-source" rows="3" placeholder="Summary..." data-kornell-source="summary"></textarea>
+				<div class="kornell-render" data-kornell-render="summary"></div>
+			</div>
+		</div>
+	</div>
+	<div class="toast-container position-static" id="toast-container">
+		<!--Toasts container - not for now-->
+	</div>
+	<div class="modal-container-custom">
+		<!--Modal container - added via script-->
 	</div>
 </body>
 </html>
