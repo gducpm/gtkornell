@@ -9,7 +9,7 @@ A fully libre-free Cornell-style note-taking application.
  - **Original Creator**: GDucpm  
  - **Current Maintainer**: GDucpm  
  - **License**: GPLv3  
- - **Latest Version**: PreRelease-v1.0.0 (machine-readable version 0.0.0-beta.1)  
+ - **Latest Version**: PreRelease-v2.0.0 (machine-readable version 0.0.0-beta.2)  
   
 ## Description  
 This program, with inspiration from the Cornell learning system, enables you to take notes and compile everything into a notebook.  
