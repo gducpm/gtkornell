@@ -10,6 +10,8 @@ cp "$ROOT/assets/icon.png" ./gtkornell.png
 cp "$ROOT/gtkornell.desktop" .
 cp -a "$ROOT/out/gtkornell-linux-x64/"* usr/bin
 cp "$ROOT/appimage_scripts/AppRun" .
+chmod 4755 usr/bin/chrome-sandbox
+chown root:root usr/bin/chrome-sandbox
 chmod +x AppRun
 
 chmod +x "$ROOT/appimage_scripts/appimagetool-x86_64.AppImage"
