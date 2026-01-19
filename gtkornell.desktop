@@ -7,3 +7,4 @@ Icon=gtkornell
 Terminal=false
 Categories=Utility;Education;
 StartupNotify=true
+StartupWMClass=gtkornell
