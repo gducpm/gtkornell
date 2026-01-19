@@ -7,4 +7,4 @@ export APPDIR="$HERE"
 export PATH="$HERE/usr/bin:${PATH:-}"
 export LD_LIBRARY_PATH="$APPDIR/usr/bin:${LD_LIBRARY_PATH:-}"
 
-exec "$HERE/usr/bin/gtkornell" "$@"
+exec "$HERE/usr/bin/gtkornell" --no-sandbox "$@"
