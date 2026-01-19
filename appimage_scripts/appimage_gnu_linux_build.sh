@@ -6,7 +6,7 @@ rm -rf out/appimage-x64/GTKornell.AppDir
 mkdir -p out/appimage-x64/GTKornell.AppDir
 cd out/appimage-x64/GTKornell.AppDir
 mkdir -p usr/bin
-cp "$ROOT/assets/icon.png" ./gtkornell.png
+cp "$ROOT/build/icon.png" ./gtkornell.png
 cp "$ROOT/gtkornell.desktop" .
 cp -a "$ROOT/out/gtkornell-linux-x64/"* usr/bin
 rm usr/bin/chrome-sandbox
